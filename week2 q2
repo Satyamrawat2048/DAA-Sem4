@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+
+void sequence(int* a,int n)
+{ int d=0;
+  
+
+  for (int i = n-1; i >=2; i--)
+  {
+      int j=0, k=i-1 ;
+      while (j<k)
+      { if(a[k]+a[j]==a[i]){ cout<<j<<","<<k <<","<<i<<endl;d++;
+      k--;
+      }
+         else if(a[j]+a[k]<a[i]) j++;
+       else k--;
+       
+      }     
+
+  }
+  if(d==0)cout<<"No sequence found\n";
+}
+void input(int *a , int n)
+{
+    for (int i = 0; i < n; i++)
+    { cin>>a[i];
+    }
+}
+int main()
+{
+    int t;
+    cin>>t;
+   
+   while (t--)
+   { int n;
+    cin>> n;
+    int a[n];
+    input(a,n);
+    sequence(a,n);
+   }
+   
+}
