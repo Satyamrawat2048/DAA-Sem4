@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+int lin_search(int*a,int n,int item)
+{
+    for (int i=0;i<n;i++)
+    {
+        if (a[i]==item){cout<<"element found\n";return i;}
+    }
+    return 0;
+}
+void input(int*a,int n)
+{
+       for (int i=0;i<n;i++)
+       cin>> a[i];
+       
+}
+int main()
+{
+    int  t;
+    int item;
+         cout<<"enter the no of test cases\n";
+
+    cin>>t;
+    
+    while(t--)
+    {
+        int n;
+     cout<<"enter the size of array\n";
+
+        cin>>n;
+        
+        int a[n];
+        cout<<"enter the elements of array\n";
+        input(a,n);
+        
+        cout<<"enter the element to search\n ";
+        cin>>item;
+        
+        if(lin_search(a,n,item)) cout<<lin_search(a,n,item)<<endl ;
+        else cout<<"not found\n";
+    }
+}
