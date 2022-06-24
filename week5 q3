@@ -1,0 +1,23 @@
+
+Q3
+#include <iostream>
+using namespace std;
+int main()
+{ int  m =7, n=12 ;
+  
+  
+   int a[m]={10 ,10 ,34 ,39 ,55 ,76 ,85};
+   int b[n]={10 ,10 ,11 ,30 ,30, 34, 34, 51, 55, 69, 72 ,89} ;
+  int i=0,j=0; 
+  
+  while(i<m&& j<n)
+  { if(a[i]==b[j])
+   {cout<<a[i]<<endl;i++;j++;}
+   else
+   {
+       if(a[i]<b[j])i++;
+       else j++;
+   }
+  }
+      return 0;
+}
