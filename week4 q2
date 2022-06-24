@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+int comp=0 , shift=0 ;
+void swap(int*a,int*b)
+{
+    int t=*a;
+    *a=*b;  
+    *b=t;
+}
+//23 65 21 76 46 89 45 32
+//54 65 34 76 78 97 46 32 51 21 
+
+void merge(int a[],int b[],int lb,int mid,int ub)
+{ int k =lb ,i=lb, le =mid ;
+  
+ while (lb<=le && mid+1<=ub)
+ {
+   if (a[lb]<a[mid+1])
+   { b[k]=a[lb];
+     lb++;
+     k++;
+     comp++;
+   }
+   else
+   {
+     b[k]=a[mid+1];
+     mid++;
+     k++;
+   } 
+ }
+ while (lb<=le)
+ { comp++;
+     b[k]=a[lb];
+     lb++;
+     k++;
+ }
+ while (mid+1<=ub)
+ { comp++;
+      b[k]=a[mid+1];
+     mid++;
+     k++;
+ }
+ // after prev steps 8 7 becomes[7 ,8] , [7 ,8] , [10,12] becomes [7,8,10,12]
+
+ for (; i <= ub; i++)
+ {a[i]=b[i];
+ shift++;} //(copying back elements to orig array for further merging)
+     
+}
+void mergesort(int a[],int b[],int lb,int ub)
+{
+  int mid=0;
+  if (lb<ub)
+  { mid=(lb+ub)/2;
+   mergesort(a,b,lb,mid);
+   mergesort(a,b,mid+1,ub);
+   merge(a,b,lb,mid,ub);
+
+  }
+}
+
+void disp(int *a, int n)
+{
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+    cout << endl;
+}
+void input(int *a, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        int a[n],b[n];
+        input(a, n);
+        mergesort(a,b,0,n-1);
+        disp(a, n);
+          cout << "comparisons=" << comp << endl;
+    cout << "Shifts=" << shift << endl;
+
+        // findduplicate(a,n);
+    }
+}
