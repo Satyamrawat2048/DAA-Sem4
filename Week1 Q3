@@ -1,0 +1,77 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int lin_search(int*a,int e,int n,int item)
+{
+    for (int i=e;i<n;i++)
+    {
+     if (a[i]==item)
+   {cout<<"element found\n";return i;
+     
+    }
+ 
+    }
+    return 0;
+}
+int jump_search(int*a,int n,int item)
+{ 
+  int leng=sqrt(n)   ;
+  
+  int l= 0, e=leng ;
+  
+  while(e<n-1)
+  {
+      if(a[l]==item)
+      {out<<"element found\n";
+        return  l;
+      }
+      else if(a[e]==item)
+      {out<<"element found\n";
+        return e;
+      }
+      else if(a[l]<item && item<a[e])
+      {
+        return(lin_search(a,l,e,item));
+      }
+      
+       
+      e+=leng+1;
+      l+=leng+1;
+      
+      
+  }
+  
+}
+void input(int*a,int n)
+{
+       for (int i=0;i<n;i++)
+       cin>> a[i];
+       
+}
+int main()
+{
+    int  t;
+    int item;
+         cout<<"enter the no of test cases\n";
+
+    cin>>t;
+    
+    while(t--)
+    {
+        int n;
+     cout<<"enter the leng of array\n";
+
+        cin>>n;
+        
+        int a[n];
+        cout<<"enter the elements of array\n";
+        input(a,n);
+        
+        cout<<"enter the element to search\n ";
+        cin>>item;
+        
+        if(jump_search(a,n,item)) cout<<jump_search(a,n,item)<<endl ;
+        else cout<<"not found\n";
+    }
+}
